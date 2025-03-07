@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Qur'an Chapters</title>
+  <link rel="stylesheet" href="/views/public/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Scheherazade:wght@400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <h1>Qur'an Chapters</h1>
+  <a href="/bookmarks"></a>View Bookmarks</a>
+  <ul>
+    <% chapters.forEach(chapter=> { %>
+      <li>
+        <a href="/chapter/<%= chapter.id %>">
+          <%= chapter.id %>. <%= chapter.name_simple %> (<%= chapter.name_arabic %>)
+        </a>
+      </li>
+      <% }) %>
+      <ul class="chapter-list">
+      </ul>
+  </ul>
+</body>
+
+</html>

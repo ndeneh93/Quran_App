@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bookmarks</title>
+  <link rel="stylesheet" href="/views/bookmarks.ejs">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Scheherazade:wght@400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <h1>Bookmarked Verses</h1>
+  <a href="/">Back to Chapters</a>
+  <% if (verses.length===0) { %>
+    <p>No bookmarks yet.</p>
+    <% } else { %>
+      <ul>
+        <% verses.forEach(verse=> { %>
+          <li>
+            <%= verse.verse_key %>: <%= verse.text_uthmani %>
+                <br>Translation: <%- verse.translations[0].text %>
+                  <%= verse.verse_key %>: <span class="verse-text">
+                      <%= verse.text_uthmani %>
+                    </span>
+                    <br><span class="translation-text">Translation: <%- verse.translations[0].text %></span>
+          </li>
+          <% }) %>
+      </ul>
+      <% } %>
+</body>
+
+</html>

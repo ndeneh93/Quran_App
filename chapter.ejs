@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    <%= chapterName %>
+  </title>
+  <link rel="stylesheet" href="/views/public/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Scheherazade:wght@400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <h1>
+    <%= chapterName %>
+  </h1>
+  <a href="/">Back to Chapters</a> | <a href="/bookmarks">View Bookmarks</a>
+  <ul>
+    <% verses.forEach(verse=> { %>
+      <li>
+        <%= verse.verse_number %>. <%= verse.text_uthmani %>
+            <br>Translation: <%- verse.translations[0].text %>
+              <br>
+              <% if (userBookmarks.includes(verse.verse_key)) { %>
+                <form action="/remove-bookmark" method="POST" style="display:inline;">
+                  <input type="hidden" name="verseId" value="<%= verse.verse_key %>">
+                  <input type="hidden" name="chapterId" value="<%= chapterId %>">
+                  <button type="submit">Remove Bookmark</button>
+                </form>
+                <% } else { %>
+                  <form action="/bookmark" method="POST" style="display:inline;">
+                    <input type="hidden" name="verseId" value="<%= verse.verse_key %>">
+                    <input type="hidden" name="chapterId" value="<%= chapterId %>">
+                    <button type="submit">Bookmark</button>
+                  </form>
+                  <% } %>
+                    <span class="verse-text">
+                      <%= verse.text_uthmani %>
+                    </span>
+                    <br><span class="translation-text">Translation: <%- verse.translations[0].text %></span>
+
+      </li>
+      <% }) %>
+  </ul>
+</body>
+
+</html>
